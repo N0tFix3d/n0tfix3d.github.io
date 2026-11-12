@@ -1,0 +1,121 @@
+@import '@fontsource/outfit/400.css';
+@import '@fontsource/outfit/500.css';
+@import '@fontsource/newsreader/400.css';
+@import '@fontsource/newsreader/500.css';
+@import '@fontsource/newsreader/400-italic.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+
+:root {
+  color-scheme: dark;
+  --ink: #0b0e13;
+  --ink-raised: #141922;
+  --paper: #ebe4d6;
+  --paper-soft: #d5ccbc;
+  --muted: #9c9488;
+  --line: rgba(235, 228, 214, 0.14);
+  --brass: #e0b15a;
+  --brass-deep: #a9782e;
+  --steel: #8ec4d4;
+  --critical: #ff6d5a;
+  --high: #f0a05a;
+  --medium: #e0b15a;
+  --low: #8fbf9a;
+  --none: #8d98a3;
+  --serif: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --sans: 'Outfit', 'Avenir Next', 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', 'Consolas', monospace;
+  --page: 1180px;
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(900px 480px at 100% -10%, rgba(224, 177, 90, 0.14), transparent 55%),
+    radial-gradient(700px 420px at -10% 10%, rgba(142, 196, 212, 0.08), transparent 50%),
+    var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: '';
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(rgba(235, 228, 214, 0.025) 1px, transparent 1px);
+  background-size: 100% 4px;
+  mix-blend-mode: soft-light;
+  opacity: 0.35;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(224, 177, 90, 0.35);
+  color: white;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+main a {
+  color: var(--brass);
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+    color: #161616;
+  }
+
+  body::before,
+  .site-chrome {
+    display: none !important;
+  }
+}

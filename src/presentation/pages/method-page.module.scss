@@ -1,0 +1,36 @@
+.focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    color: var(--paper-soft);
+  }
+}
+
+.contact {
+  display: grid;
+  gap: 4px;
+  margin: 28px 0 0;
+
+  a {
+    color: var(--brass);
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+  }
+
+  span {
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}

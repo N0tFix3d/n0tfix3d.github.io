@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "critical",
+      "label": "Critical",
+      "rank": 5,
+      "cvssMin": 9,
+      "cvssMax": 10,
+      "summary": "A remote attacker can take the application, or the host under it, with little or no user interaction.",
+      "sections": [
+        {
+          "id": "meaning",
+          "title": "How this band is used here",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Critical means the finding crosses from the application into code execution or an equivalent full compromise, and the conditions are realistic on a default deployment. CVSS 9.0 to 10.0."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "These reports go out with a concrete remediation, not only a description. The public write-up waits for the release that removes the primitive."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "high",
+      "label": "High",
+      "rank": 4,
+      "cvssMin": 7,
+      "cvssMax": 8.9,
+      "summary": "A trusted boundary fails. An attacker who already has some access, or who can ride an existing session, can expand or keep that access.",
+      "sections": [
+        {
+          "id": "meaning",
+          "title": "How this band is used here",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "High covers broken authorization and session failures that let a revoked person keep acting as an administrator, or that expose sensitive data to someone who should have lost that right. CVSS 7.0 to 8.9."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "medium",
+      "label": "Medium",
+      "rank": 3,
+      "cvssMin": 4,
+      "cvssMax": 6.9,
+      "summary": "The weakness is real, and the impact is bounded by privileges, user interaction, or a narrower confidentiality, integrity, or availability loss.",
+      "sections": [
+        {
+          "id": "meaning",
+          "title": "How this band is used here",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Medium is reserved for flaws that still deserve a CVE and a patch, without the direct path to full compromise that Critical and High describe. CVSS 4.0 to 6.9. No record in the current archive sits in this band."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "low",
+      "label": "Low",
+      "rank": 2,
+      "cvssMin": 0.1,
+      "cvssMax": 3.9,
+      "summary": "A broken primitive or a defense that no longer matches current practice. Impact usually needs a second failure, such as a leaked database.",
+      "sections": [
+        {
+          "id": "meaning",
+          "title": "How this band is used here",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Low does not mean optional. A weak hash, a missing expiration, or a verbose error is still a defect in the security control. It is published with the same timeline discipline as a critical issue. CVSS 0.1 to 3.9, when a score was assigned."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "none",
+      "label": "None",
+      "rank": 1,
+      "cvssMin": 0,
+      "cvssMax": 0,
+      "summary": "No direct security impact under CVSS. Kept so the scale stays complete when a record is informational.",
+      "sections": [
+        {
+          "id": "meaning",
+          "title": "How this band is used here",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "None is the CVSS floor. A record would land here only when the issue is worth documenting and has no scored impact. The archive does not use it today."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

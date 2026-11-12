@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    {
+      "id": "code-injection",
+      "label": "Code injection",
+      "summary": "Untrusted input reaches a primitive that generates or executes code in the application language.",
+      "sections": [
+        {
+          "id": "weakness",
+          "title": "The weakness",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "The dangerous pattern is a validator placed in front of eval, include, or a template engine, with the assumption that a regular expression is a sandbox. Once the check and the execution disagree, the attacker is running code as the application user."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Mapped here to CWE-94, Improper Control of Generation of Code."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "fix",
+          "title": "What a fix looks like",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Remove the evaluator. Parse the expression with a library that can only return a value, or evaluate an explicit abstract syntax tree of the operations you intend to allow. Do not keep a denylist of characters in front of eval."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "denial-of-service",
+      "label": "Denial of service",
+      "summary": "A small input makes the process exhaust stack, CPU, or memory, and the request takes the worker down with it.",
+      "sections": [
+        {
+          "id": "weakness",
+          "title": "The weakness",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Recursive or nested patterns, unbounded resource use, and parsers that fail closed by crashing the process. The user does not need a valid session if the endpoint accepts the payload from anyone who can edit the relevant content."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Mapped here to CWE-1333, Inefficient Regular Expression Complexity, when the cost comes from the pattern itself."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "fix",
+          "title": "What a fix looks like",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Bound the input, and stop using a recursive expression as the gate. A parser with an explicit depth limit fails the request instead of the process."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "broken-access-control",
+      "label": "Broken access control",
+      "summary": "The application decides that a subject may act without checking that the subject still exists and still holds that role.",
+      "sections": [
+        {
+          "id": "weakness",
+          "title": "The weakness",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Authorization that is computed once, at login, and then trusted for the life of the session. Deleting the account, changing the role, or disabling the user does not cross-check the next request."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Mapped here to CWE-285, Improper Authorization."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "fix",
+          "title": "What a fix looks like",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "On every privileged request, load the subject from the current store and refuse the call if the account is missing, disabled, or no longer allowed to perform the action. Clearing leftover tokens is part of the same change, not a follow-up."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "session-management",
+      "label": "Session management",
+      "summary": "A session or a persistent token stays valid after the event that should have ended it.",
+      "sections": [
+        {
+          "id": "weakness",
+          "title": "The weakness",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Remember-me cookies, bearer tokens, and server-side sessions that are not revoked when the account is disabled or deleted. The password field can be invalidated while the token fields still authenticate the same person."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Mapped here to CWE-613, Insufficient Session Expiration, and where the secret is left in storage, CWE-212."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "fix",
+          "title": "What a fix looks like",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Treat disablement and deletion as revocation events. Clear every authenticator for that subject, and make the login check fail closed when the account is not active."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cryptography",
+      "label": "Cryptography",
+      "summary": "A security control is built on a hash or construction that no longer provides the property the code assumes.",
+      "sections": [
+        {
+          "id": "weakness",
+          "title": "The weakness",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Fast hashes such as SHA-1 used as password storage, comparisons that are not constant-time, or tokens derived from the clock. The control looks present and does not hold."
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Mapped here to CWE-328, Use of Weak Hash, when the algorithm itself is the defect."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "fix",
+          "title": "What a fix looks like",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "content": [
+                {
+                  "type": "text",
+                  "value": "Store passwords with a password hashing function that is slow and salted, such as bcrypt, scrypt, or Argon2, through the platform API. Verify with the matching function so the comparison stays inside the primitive."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

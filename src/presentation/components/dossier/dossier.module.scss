@@ -1,0 +1,109 @@
+.dossier {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  gap: 22px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  background: rgba(20, 25, 34, 0.72);
+}
+
+.severity {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  span {
+    letter-spacing: 0.04em;
+  }
+}
+
+dl {
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+dt {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+dd {
+  margin: 2px 0 0;
+}
+
+a {
+  color: var(--brass);
+}
+
+.vector {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.block {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+li span {
+  display: block;
+  color: var(--paper-soft);
+  font-size: 0.92rem;
+}
+
+.links a {
+  color: var(--paper);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--brass);
+  }
+}
+
+.notes {
+  justify-self: start;
+  color: var(--ink);
+  background: var(--brass);
+  text-decoration: none;
+  padding: 10px 12px;
+  font-size: 0.92rem;
+}
+
+a.critical { color: var(--critical); }
+a.high { color: var(--high); }
+a.medium { color: var(--medium); }
+a.low { color: var(--low); }
+a.none { color: var(--none); }
+
+@media (max-width: 960px) {
+  .dossier {
+    position: static;
+  }
+}
