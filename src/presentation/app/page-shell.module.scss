@@ -1,0 +1,166 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  z-index: 40;
+  padding: 8px 12px;
+  background: var(--brass);
+  color: var(--ink);
+  text-decoration: none;
+
+  &:focus {
+    top: 12px;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid var(--line);
+  background: rgba(11, 14, 19, 0.78);
+  backdrop-filter: blur(16px);
+}
+
+.bar,
+.main,
+.footerInner {
+  width: min(var(--page), calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.bar {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.monogram {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--brass);
+  color: var(--brass);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.brandName,
+.handle {
+  display: block;
+}
+
+.brandName {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.handle {
+  margin-top: 4px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+nav {
+  display: flex;
+  gap: 22px;
+}
+
+.navLink {
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+
+  &:hover,
+  &.active {
+    color: var(--paper);
+  }
+}
+
+.main {
+  flex: 1;
+}
+
+.status {
+  padding: 72px 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer {
+  border-top: 1px solid var(--line);
+}
+
+.footerInner {
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 0;
+
+  p,
+  ul {
+    margin: 0;
+  }
+
+  span {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    color: var(--paper-soft);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--brass);
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .bar,
+  .footerInner {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-block: 18px;
+  }
+}

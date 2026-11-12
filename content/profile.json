@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "name": "HiddenCry",
+  "handle": "HiddenCry",
+  "role": "Security researcher",
+  "statement": "Findings, written down after the fix.",
+  "summary": "I research security flaws in open-source web applications and publish them once maintainers have a patch, or once the agreed disclosure window has closed. This archive is the public record: the CVE, the affected versions, the weakness, and the remediation.",
+  "focus": [
+    "Web application security",
+    "Coordinated disclosure",
+    "Unsafe evaluation",
+    "Access control and sessions",
+    "Cryptography in application code"
+  ],
+  "links": [
+    {
+      "label": "GitHub",
+      "href": "https://github.com/HiddenCry"
+    },
+    {
+      "label": "This repository",
+      "href": "https://github.com/HiddenCry/Vulnerability-Disclosures"
+    }
+  ],
+  "contact": {
+    "email": "okoubisso.guyselassie@gmail.com",
+    "label": "Research contact"
+  },
+  "sections": [
+    {
+      "id": "movement",
+      "title": "How a disclosure moves",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "value": "The public page is the last step, not the first. A record appears here only after the maintainer has had a private report and a real chance to ship a fix."
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            [
+              {
+                "type": "text",
+                "value": "Confirm the flaw on a maintained version, with a clear impact and a suggested correction."
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "Send the report privately to the project, usually through its GitHub security advisory."
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "Wait for the patch, or for the agreed disclosure window."
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "Publish the CVE record here, beside the original notes, the timeline, and the commit that closed it."
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scope",
+      "title": "What this archive covers",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "value": "The work so far sits in application code that trusts the wrong boundary: a formula passed to eval, a session that outlives the account, a token left behind when a user is disabled, a password stored with a broken hash."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "value": "Each record keeps the markdown notes in the repository and a typed JSON article for the site. Screenshots stay next to the original write-up. Proofs are the ones already published with the coordinated disclosure."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "Editing the record",
+          "content": [
+            {
+              "type": "text",
+              "value": "Names, focus areas, and this essay live in content/profile.json. Categories and severity bands live beside it. A new CVE is a markdown file plus a JSON article in the product folder."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

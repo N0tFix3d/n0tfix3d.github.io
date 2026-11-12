@@ -1,0 +1,139 @@
+.root {
+  display: grid;
+  gap: 18px;
+  color: var(--paper-soft);
+  font-size: 1.05rem;
+  line-height: 1.7;
+
+  h2,
+  h3 {
+    margin: 12px 0 0;
+    color: var(--paper);
+    font-family: var(--serif);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  h3 {
+    font-size: 1.45rem;
+  }
+
+  p,
+  li {
+    margin: 0;
+    max-width: 68ch;
+  }
+
+  ul,
+  ol {
+    margin: 0;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: 10px;
+  }
+
+  a {
+    color: var(--brass);
+  }
+
+  blockquote {
+    margin: 0;
+    padding: 4px 0 4px 18px;
+    border-left: 2px solid var(--brass);
+    color: var(--paper);
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-style: italic;
+    line-height: 1.35;
+    max-width: 40rem;
+  }
+}
+
+.inlineCode {
+  padding: 0.05em 0.35em;
+  border-radius: 4px;
+  background: rgba(235, 228, 214, 0.08);
+  font-family: var(--mono);
+  font-size: 0.86em;
+}
+
+.code {
+  margin: 4px 0;
+  border: 1px solid var(--line);
+  background: #090c11;
+  overflow: hidden;
+
+  figcaption {
+    padding: 8px 14px;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  pre {
+    margin: 0;
+    padding: 16px 14px 18px;
+    overflow: auto;
+  }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    line-height: 1.55;
+    white-space: pre;
+  }
+}
+
+.figure {
+  margin: 8px 0;
+  display: grid;
+  gap: 8px;
+
+  img {
+    width: 100%;
+    border: 1px solid var(--line);
+    background: #080b10;
+  }
+
+  figcaption {
+    color: var(--muted);
+    font-size: 0.86rem;
+  }
+}
+
+.calloutTitle {
+  margin-bottom: 6px !important;
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 11px !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.impact,
+.note,
+.risk {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  background: rgba(20, 25, 34, 0.7);
+}
+
+.impact {
+  border-left: 2px solid var(--critical);
+}
+
+.note {
+  border-left: 2px solid var(--steel);
+}
+
+.risk {
+  border-left: 2px solid var(--brass);
+}
