@@ -1,4 +1,4 @@
-const repositoryUrl = 'https://github.com/HiddenCry/Vulnerability-Disclosures'
+const repositoryUrl = 'https://github.com/N0tFix3d/n0tfix3d.github.io'
 
 export function readmeUrl(readmePath: string): string {
   return `${repositoryUrl}/blob/main/${readmePath}`

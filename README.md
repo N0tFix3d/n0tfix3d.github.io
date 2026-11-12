@@ -16,7 +16,7 @@ npm install
 npm run dev
 ```
 
-`npm run build` writes `dist/` with the GitHub Pages base path `/Vulnerability-Disclosures/`. `npm run preview` serves that build. `npm test` checks the query logic and that every JSON article, figure, and markdown note still lines up.
+`npm run build` writes `dist/` for the user site at `https://n0tfix3d.github.io/`. The publishing repository must be named `n0tfix3d.github.io`. `npm run preview` serves that build. `npm test` checks the query logic and that every JSON article, figure, and markdown note still lines up.
 
 ### Where the data lives
 
