@@ -7,6 +7,7 @@ import { defineConfig } from 'vitest/config'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 const root = path.dirname(fileURLToPath(import.meta.url))
+const pagesBase = '/Vulnerability-Disclosures/'
 const productRoots = ['YesWiki', 'BluditCMS', 'phpMyFAQ']
 const imagePattern = /\.(png|jpe?g|gif|webp)$/i
 
@@ -77,8 +78,8 @@ function pagesFallbackPlugin(): Plugin {
   }
 }
 
-export default defineConfig(() => ({
-  base: '/',
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? pagesBase : '/',
   plugins: [react(), tsconfigPaths(), evidencePlugin(), pagesFallbackPlugin()],
   build: {
     target: 'es2022',
