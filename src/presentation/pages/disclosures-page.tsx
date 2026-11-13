@@ -16,7 +16,7 @@ export function DisclosuresPage() {
   const products = listProducts(disclosures)
 
   useEffect(() => {
-    document.title = 'Archive — HiddenCry'
+    document.title = 'CVEs — HiddenCry'
   }, [])
 
   const update = (next: DisclosureQuery) => {
@@ -31,7 +31,7 @@ export function DisclosuresPage() {
   return (
     <div className={layout.page}>
       <p className={layout.kicker}>Coordinated disclosures</p>
-      <h1 className={layout.title}>The archive</h1>
+      <h1 className={layout.title}>CVEs</h1>
       <p className={layout.lede}>
         {disclosures.length} published records. Filter by severity, weakness class, or product. Scores are the ones assigned with the CVE.
       </p>

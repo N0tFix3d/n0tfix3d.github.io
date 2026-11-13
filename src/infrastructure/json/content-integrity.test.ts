@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import { loadArchive } from '@application/load-archive'
 import { createRepositories } from '@composition/create-repositories'
 import { JsonDisclosureRepository } from '@infrastructure/json/json-disclosure-repository'
-import { disclosureDocumentSchema } from '@infrastructure/json/schemas'
+import { blogPostSchema, disclosureDocumentSchema, recognitionFileSchema } from '@infrastructure/json/schemas'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..')
 
@@ -44,5 +44,32 @@ describe('disclosure JSON on disk', () => {
     expect(snapshot.disclosures.length).toBeGreaterThanOrEqual(4)
     expect(snapshot.catalog.severities.map((level) => level.id)).toContain('critical')
     expect(snapshot.profile.handle).toBe('HiddenCry')
+    expect(snapshot.posts.map((post) => post.id)).toContain('how-a-disclosure-moves')
+    expect(JSON.stringify(snapshot.profile)).not.toMatch(/@/)
+  })
+
+  it('keeps blog posts and recognitions aligned with the files on disk', () => {
+    const profileRaw = readFileSync(path.join(root, 'content/profile.json'), 'utf8')
+    expect(profileRaw).not.toMatch(/@/)
+
+    const recognitions = recognitionFileSchema.parse(
+      JSON.parse(readFileSync(path.join(root, 'content/recognitions.json'), 'utf8')),
+    )
+    for (const item of recognitions.items) {
+      expect(statSync(path.join(root, item.proof.src)).isFile(), item.proof.src).toBe(true)
+    }
+
+    const posts = walk(path.join(root, 'content/blog')).filter((file) => file.endsWith('.json'))
+    expect(posts.length).toBeGreaterThan(0)
+    for (const file of posts) {
+      const parsed = blogPostSchema.parse(JSON.parse(readFileSync(file, 'utf8')))
+      expect(path.basename(file, '.json')).toBe(parsed.id)
+      for (const section of parsed.sections) {
+        for (const block of section.blocks) {
+          if (block.type !== 'image') continue
+          expect(statSync(path.join(root, block.src)).isFile(), block.src).toBe(true)
+        }
+      }
+    }
   })
 })

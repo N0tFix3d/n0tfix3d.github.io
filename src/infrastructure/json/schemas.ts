@@ -1,7 +1,9 @@
 import { z } from 'zod'
+import type { BlogPost } from '@domain/blog/post'
 import type { Catalog } from '@domain/catalog/catalog'
 import type { Disclosure } from '@domain/disclosure/disclosure'
 import type { Profile } from '@domain/profile/profile'
+import type { Recognition } from '@domain/recognition/recognition'
 
 const inlineSchema = z.discriminatedUnion('type', [
   z.object({ type: z.literal('text'), value: z.string().min(1) }),
@@ -138,12 +140,39 @@ export const profileDocumentSchema = z.object({
   summary: z.string().min(1),
   focus: z.array(z.string().min(1)).min(1),
   links: z.array(z.object({ label: z.string().min(1), href: z.string().url() })),
-  contact: z.object({
-    email: z.string().email(),
-    label: z.string().min(1),
-  }),
   sections: z.array(sectionSchema).min(1),
 })
+
+const repoPath = z.string().regex(/^(?!\/)(?!.*\.\.)[A-Za-z0-9_./-]+$/, 'Path must stay inside the repository')
+
+export const recognitionFileSchema = z.object({
+  schemaVersion: z.literal(1),
+  items: z.array(
+    z.object({
+      id: z.string().regex(/^[a-z0-9-]+$/),
+      kind: z.enum(['hof', 'vdp']),
+      organization: z.string().min(1),
+      year: z.number().int().min(1990).max(2100),
+      summary: z.string().min(1),
+      description: z.array(blockSchema).min(1),
+      proof: z.object({
+        src: repoPath,
+        alt: z.string().min(1),
+      }),
+    }),
+  ),
+})
+
+export const blogPostSchema = z.object({
+  schemaVersion: z.literal(1),
+  id: z.string().regex(/^[a-z0-9-]+$/),
+  title: z.string().min(1),
+  summary: z.string().min(1),
+  publishedOn: isoDate,
+  sections: z.array(sectionSchema).min(1),
+})
+
+export const blogPostListSchema = z.array(blogPostSchema)
 
 export const disclosureListSchema = z.array(disclosureDocumentSchema).min(1)
 
@@ -166,7 +195,20 @@ export function toProfile(document: z.infer<typeof profileDocumentSchema>): Prof
     summary: document.summary,
     focus: document.focus,
     links: document.links,
-    contact: document.contact,
+    sections: document.sections,
+  }
+}
+
+export function toRecognition(document: z.infer<typeof recognitionFileSchema>['items'][number]): Recognition {
+  return document
+}
+
+export function toBlogPost(document: z.infer<typeof blogPostSchema>): BlogPost {
+  return {
+    id: document.id,
+    title: document.title,
+    summary: document.summary,
+    publishedOn: document.publishedOn,
     sections: document.sections,
   }
 }

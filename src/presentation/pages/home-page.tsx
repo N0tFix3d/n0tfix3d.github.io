@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { queryDisclosures } from '@application/query-disclosures'
 import { RecordList } from '@presentation/components/record-list/record-list'
+import { RichText } from '@presentation/components/rich-text/rich-text'
 import { SignalField } from '@presentation/components/signal-field/signal-field'
 import { useArchiveSnapshot } from '@presentation/app/use-archive-snapshot'
 import { formatScore } from '@presentation/lib/site'
@@ -32,16 +33,16 @@ export function HomePage() {
           <h1>{profile.statement}</h1>
           <p className={styles.summary}>{profile.summary}</p>
           <div className={styles.actions}>
-            <Link className={styles.primary} to="/disclosures">
-              Read the archive
+            <Link className={styles.primary} to="/cves">
+              Read the CVEs
             </Link>
-            <Link className={styles.secondary} to="/method">
-              How I disclose
+            <Link className={styles.secondary} to="/#about">
+              About
             </Link>
           </div>
         </div>
         {lead ? (
-          <Link className={styles.lead} to={`/disclosures/${lead.id}`}>
+          <Link className={styles.lead} to={`/cves/${lead.id}`}>
             <p>Highest in the archive</p>
             <strong>{lead.id}</strong>
             <span>{lead.title}</span>
@@ -72,10 +73,39 @@ export function HomePage() {
         </p>
       </section>
 
+      <section className={styles.about} id="about">
+        <div>
+          <p className={layout.kicker}>About</p>
+          <h2>{profile.name}</h2>
+          <p className={styles.role}>{profile.role}</p>
+          <p className={styles.summary}>{profile.summary}</p>
+        </div>
+        <div>
+          <p className={styles.focusLabel}>Focus</p>
+          <ul className={styles.focus}>
+            {profile.focus.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div className={styles.notes}>
+          {profile.sections.map((section) => (
+            <section key={section.id}>
+              <h3>{section.title}</h3>
+              <RichText blocks={section.blocks} />
+            </section>
+          ))}
+          <p className={styles.noteLinks}>
+            <Link to="/blog/how-a-disclosure-moves">How a disclosure moves</Link>
+            <Link to="/hall-of-fame">Hall of Fame</Link>
+          </p>
+        </div>
+      </section>
+
       <section className={layout.section}>
         <div className={layout.sectionHead}>
           <h2>The records</h2>
-          <Link to="/disclosures">Filter the archive</Link>
+          <Link to="/cves">Filter the CVEs</Link>
         </div>
         <RecordList items={ordered} catalog={catalog} />
       </section>

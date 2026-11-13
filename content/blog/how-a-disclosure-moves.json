@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "id": "how-a-disclosure-moves",
+  "title": "How a disclosure moves",
+  "summary": "The public page is the last step. A record appears here only after a private report and a real chance to ship a fix.",
+  "publishedOn": "2026-11-12",
+  "sections": [
+    {
+      "id": "sequence",
+      "title": "The sequence",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "value": "I confirm the flaw on a maintained version, report it privately, and wait for the patch or the agreed window before the CVE is written up here."
+            }
+          ]
+        },
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            [
+              {
+                "type": "text",
+                "value": "Confirm the flaw on a maintained version, with a clear impact and a suggested correction."
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "Send the report privately to the project, usually through its GitHub security advisory."
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "Wait for the patch, or for the agreed disclosure window."
+              }
+            ],
+            [
+              {
+                "type": "text",
+                "value": "Publish the CVE record here, beside the original notes, the timeline, and the commit that closed it."
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "what-gets-published",
+      "title": "What gets published",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "content": [
+            {
+              "type": "text",
+              "value": "The markdown notes stay in the product folder. The site reads a JSON article with the same sections: summary, weakness, impact, and remediation. Figures are the screenshots already published with the disclosure."
+            }
+          ]
+        },
+        {
+          "type": "callout",
+          "tone": "note",
+          "title": "Scope",
+          "content": [
+            {
+              "type": "text",
+              "value": "The notes cover application code that trusts the wrong boundary: evaluation of untrusted formulas, sessions that outlive an account, tokens left behind when a user is disabled, and passwords stored with a broken hash."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

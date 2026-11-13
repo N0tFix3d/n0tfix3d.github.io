@@ -25,7 +25,7 @@ export function DisclosureDetailPage() {
         <p className={layout.kicker}>Missing record</p>
         <h1 className={cxTitle}>This CVE is not in the archive.</h1>
         <p className={layout.lede}>
-          <Link to="/disclosures">Return to the archive</Link>
+          <Link to="/cves">Return to CVEs</Link>
         </p>
       </div>
     )
@@ -36,7 +36,7 @@ export function DisclosureDetailPage() {
   return (
     <article className={styles.article}>
       <p className={styles.crumb}>
-        <Link to="/disclosures">Archive</Link>
+        <Link to="/cves">CVEs</Link>
         <span>/</span>
         {disclosure.id}
       </p>

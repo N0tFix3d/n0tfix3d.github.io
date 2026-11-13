@@ -22,9 +22,11 @@ npm run dev
 
 | File | Role |
 | --- | --- |
-| `content/profile.json` | Name, focus, and the practice essay |
+| `content/profile.json` | Name, focus, and the about section |
 | `content/severities.json` | Critical through None, with the text for each band |
 | `content/categories.json` | Weakness classes and the text for each class |
+| `content/recognitions.json` | Hall of fame and VDP letters: proof image, organization, year, description |
+| `content/blog/*.json` | Blog articles as rich text |
 | `<Product>/<CVE-ID>/<CVE-ID>.json` | Article sections, timeline, references, figure paths |
 | `<Product>/<CVE-ID>/<CVE-ID>.md` | Original disclosure notes |
 
@@ -40,6 +42,11 @@ The UI talks to repository ports. The default adapters read the JSON files. Set 
 - `GET /catalog` with `severities` and `categories`
 - `GET /disclosures` as an array of article documents
 - `GET /disclosures/:id` for one article, or `404`
+- `GET /recognitions` with `schemaVersion` and `items`
+- `GET /posts` as an array of blog articles
+- `GET /posts/:id` for one article, or `404`
+
+A recognition item has `kind` `hof` or `vdp`, `organization`, `year`, `summary`, rich-text `description`, and `proof` (`src`, `alt`). The image path is repository-relative, the same way CVE figures are. `hof` is an honorary listing that publishes the researcher’s name. `vdp` is a vulnerability disclosure program, the legal frame for the report. Leave `items` empty until a letter is ready to publish. A blog file lives at `content/blog/<id>.json` and uses the same rich-text blocks as a CVE article.
 
 
 | Product | Vulnerability Type | Severity | CVE | Evidence |

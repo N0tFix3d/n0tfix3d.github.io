@@ -25,7 +25,7 @@ export function RecordList({ items, catalog }: RecordListProps) {
 
         return (
           <li key={item.id}>
-            <Link className={styles.row} to={`/disclosures/${item.id}`}>
+            <Link className={styles.row} to={`/cves/${item.id}`}>
               <div>
                 <p className={cx(styles.id, styles[item.severityId] ?? styles.none)}>{item.id}</p>
                 <p className={styles.product}>{item.product.name}</p>

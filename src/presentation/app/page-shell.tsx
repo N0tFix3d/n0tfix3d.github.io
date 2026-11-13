@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { loadArchive, type ArchiveSnapshot } from '@application/load-archive'
 import type { Profile } from '@domain/profile/profile'
+import { CursorFollow } from '@presentation/components/cursor-follow/cursor-follow'
 import { cx } from '@presentation/lib/cx'
 import { useRepositories } from '@presentation/app/repository-context'
 import styles from './page-shell.module.scss'
@@ -47,10 +48,22 @@ export function PageShell() {
     }
   }, [repositories])
 
+  const location = useLocation()
+
+  useEffect(() => {
+    if (!location.hash || state.status !== 'ready') return
+    const id = decodeURIComponent(location.hash.slice(1))
+    const target = document.getElementById(id)
+    if (!target) return
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
+  }, [location.hash, location.pathname, state.status])
+
   const profile = state.status === 'ready' ? state.snapshot.profile : null
 
   return (
     <div className={styles.page}>
+      <CursorFollow />
       <a className={styles.skip} href="#content">
         Skip to content
       </a>
@@ -64,12 +77,18 @@ export function PageShell() {
             </span>
           </NavLink>
           <nav aria-label="Primary">
-            <NavLink to="/disclosures" className={({ isActive }) => cx(styles.navLink, isActive && styles.active)}>
-              Archive
+            <NavLink to="/cves" className={({ isActive }) => cx(styles.navLink, isActive && styles.active)}>
+              CVEs
             </NavLink>
-            <NavLink to="/method" className={({ isActive }) => cx(styles.navLink, isActive && styles.active)}>
-              Practice
+            <NavLink to="/hall-of-fame" className={({ isActive }) => cx(styles.navLink, isActive && styles.active)}>
+              Hall of Fame
             </NavLink>
+            <NavLink to="/blog" className={({ isActive }) => cx(styles.navLink, isActive && styles.active)}>
+              Blog
+            </NavLink>
+            <Link to="/#about" className={styles.navLink}>
+              About
+            </Link>
           </nav>
         </div>
       </header>
@@ -96,11 +115,6 @@ export function PageShell() {
                 </a>
               </li>
             ))}
-            {profile ? (
-              <li>
-                <a href={`mailto:${profile.contact.email}`}>{profile.contact.label}</a>
-              </li>
-            ) : null}
           </ul>
         </div>
       </footer>

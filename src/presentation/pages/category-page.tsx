@@ -22,7 +22,7 @@ export function CategoryPage() {
         <p className={layout.kicker}>Missing class</p>
         <h1 className={layout.title}>This weakness class is not in the catalog.</h1>
         <p className={layout.lede}>
-          <Link to="/disclosures">Return to the archive</Link>
+          <Link to="/cves">Return to CVEs</Link>
         </p>
       </div>
     )

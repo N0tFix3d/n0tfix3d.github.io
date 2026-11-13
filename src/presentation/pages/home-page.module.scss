@@ -20,7 +20,7 @@
 }
 
 .copy,
-.lead {
+a.lead {
   position: relative;
   z-index: 1;
 }
@@ -49,8 +49,8 @@
   margin-top: 28px;
 }
 
-.primary,
-.secondary {
+a.primary,
+a.secondary {
   display: inline-flex;
   align-items: center;
   min-height: 46px;
@@ -58,17 +58,101 @@
   text-decoration: none;
 }
 
-.primary {
+a.primary {
   background: var(--brass);
   color: #1a140c;
 }
 
-.secondary {
-  border: 1px solid var(--line);
-  color: var(--paper);
+a.primary:hover {
+  background: #ebc274;
 }
 
-.lead {
+a.secondary {
+  border: 1px solid rgba(142, 196, 212, 0.55);
+  color: var(--steel);
+}
+
+a.secondary:hover {
+  background: rgba(142, 196, 212, 0.1);
+}
+
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.7fr);
+  gap: 28px 48px;
+  margin-top: 72px;
+  padding-top: 8px;
+  scroll-margin-top: 96px;
+}
+
+.about h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.role,
+.focusLabel {
+  margin: 12px 0 0;
+  color: var(--steel);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.focus li {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  color: var(--paper-soft);
+}
+
+.notes {
+  grid-column: 1 / -1;
+  max-width: 46rem;
+}
+
+.notes h3 {
+  margin: 0 0 8px;
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.noteLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 22px 0 0;
+}
+
+.noteLinks a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid rgba(224, 177, 90, 0.45);
+  color: var(--brass);
+  text-decoration: none;
+}
+
+.noteLinks a:hover {
+  background: rgba(224, 177, 90, 0.1);
+}
+
+a.lead {
   justify-self: end;
   width: min(100%, 320px);
   color: var(--paper);
@@ -158,7 +242,11 @@
     mask-image: linear-gradient(#000, transparent 85%);
   }
 
-  .lead {
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  a.lead {
     justify-self: start;
   }
 

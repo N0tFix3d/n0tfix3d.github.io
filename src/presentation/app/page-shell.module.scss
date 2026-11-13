@@ -86,17 +86,24 @@
 
 nav {
   display: flex;
-  gap: 22px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px 20px;
 }
 
 .navLink {
   color: var(--muted);
+  padding-bottom: 3px;
   text-decoration: none;
   letter-spacing: 0.04em;
 
   &:hover,
   &.active {
     color: var(--paper);
+  }
+
+  &.active {
+    box-shadow: inset 0 -1px 0 var(--brass);
   }
 }
 

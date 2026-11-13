@@ -19,7 +19,11 @@ function walkFiles(directory: string): string[] {
 }
 
 function evidenceFiles(): string[] {
-  return productRoots.flatMap((product) => walkFiles(path.join(root, product))).filter((file) => imagePattern.test(file))
+  const productImages = productRoots
+    .flatMap((product) => walkFiles(path.join(root, product)))
+    .filter((file) => imagePattern.test(file))
+  const contentImages = walkFiles(path.join(root, 'content')).filter((file) => imagePattern.test(file))
+  return [...productImages, ...contentImages]
 }
 
 function contentType(filePath: string): string {

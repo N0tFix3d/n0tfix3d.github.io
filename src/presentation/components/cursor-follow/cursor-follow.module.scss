@@ -1,0 +1,50 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.root[data-armed='true'][data-visible='true'] {
+  opacity: 1;
+}
+
+.dot,
+.ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  background: var(--brass);
+}
+
+.ring {
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(224, 177, 90, 0.7);
+  transition: width 160ms ease, height 160ms ease, border-color 160ms ease;
+}
+
+.root[data-hot='true'] .ring {
+  width: 44px;
+  height: 44px;
+  border-color: var(--steel);
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .root {
+    display: none;
+  }
+}
+
+@media print {
+  .root {
+    display: none;
+  }
+}

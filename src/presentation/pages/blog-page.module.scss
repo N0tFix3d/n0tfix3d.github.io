@@ -1,0 +1,45 @@
+.list {
+  display: grid;
+  gap: 14px;
+  margin: 36px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list a {
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--steel);
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    border-color: rgba(142, 196, 212, 0.55);
+  }
+}
+
+.list time {
+  color: var(--steel);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.list strong {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.list span,
+.empty {
+  color: var(--paper-soft);
+}
+
+.empty {
+  margin-top: 28px;
+}

@@ -3,6 +3,8 @@ import type { ArchiveRepositories } from '@domain/archive/archive-repositories'
 import type { Catalog } from '@domain/catalog/catalog'
 import type { Disclosure } from '@domain/disclosure/disclosure'
 import type { Profile } from '@domain/profile/profile'
+import type { BlogPost } from '@domain/blog/post'
+import type { Recognition } from '@domain/recognition/recognition'
 import { loadArchive } from '@application/load-archive'
 
 const profile: Profile = {
@@ -13,7 +15,6 @@ const profile: Profile = {
   summary: 'Archive',
   focus: ['Web'],
   links: [],
-  contact: { email: 'research@example.com', label: 'Research contact' },
   sections: [],
 }
 
@@ -42,13 +43,21 @@ const disclosure: Disclosure = {
   references: [],
 }
 
-function repositories(disclosures: readonly Disclosure[]): ArchiveRepositories {
+function repositories(
+  disclosures: readonly Disclosure[],
+  extras?: { recognitions?: readonly Recognition[]; posts?: readonly BlogPost[] },
+): ArchiveRepositories {
   return {
     profile: { get: async () => profile },
     catalog: { get: async () => catalog },
     disclosures: {
       list: async () => disclosures,
       findById: async (id) => disclosures.find((item) => item.id === id) ?? null,
+    },
+    recognitions: { list: async () => extras?.recognitions ?? [] },
+    posts: {
+      list: async () => extras?.posts ?? [],
+      findById: async (id) => extras?.posts?.find((item) => item.id === id) ?? null,
     },
   }
 }
@@ -63,5 +72,16 @@ describe('loadArchive', () => {
   it('rejects a disclosure that points at an unknown category', async () => {
     const broken: Disclosure = { ...disclosure, categoryIds: ['missing'] }
     await expect(loadArchive(repositories([broken]))).rejects.toThrow(/unknown category/)
+  })
+
+  it('rejects a duplicated blog post id', async () => {
+    const post: BlogPost = {
+      id: 'notes',
+      title: 'Notes',
+      summary: 'Notes',
+      publishedOn: '2026-11-12',
+      sections: [],
+    }
+    await expect(loadArchive(repositories([disclosure], { posts: [post, post] }))).rejects.toThrow(/Duplicate blog post/)
   })
 })

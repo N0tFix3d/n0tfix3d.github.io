@@ -13,9 +13,5 @@ export interface Profile {
   readonly summary: string
   readonly focus: readonly string[]
   readonly links: readonly ProfileLink[]
-  readonly contact: {
-    readonly email: string
-    readonly label: string
-  }
   readonly sections: readonly ArticleSection[]
 }
